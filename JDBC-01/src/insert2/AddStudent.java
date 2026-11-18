@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+
 public class AddStudent {
 		public static void main(String[] args)throws ClassNotFoundException, SQLException{
 			
@@ -24,7 +25,7 @@ public class AddStudent {
 			ps.setString(2, name);
 			ps.setDouble(3, marks);
 			
-			int rowCount = ps.executeUpdate(query);
+			int rowCount = ps.executeUpdate();
 			
 			if(rowCount>0) {
 				System.out.println("Data add SUCESS...");
