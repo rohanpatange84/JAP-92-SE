@@ -20,11 +20,6 @@ public class ReadStudent {
 			
 			ResultSet rs = ps.executeQuery();
 			
-			for(int i=0;i<rs.getFetchSize();i++) {
-				
-				System.out.println(rs.getBoolean(i));
-				
-			}
 			
 			while(rs.next()) {
 				System.out.print(rs.getInt(1)+" ");
