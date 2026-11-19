@@ -97,13 +97,15 @@ public class StudentDAO {
 			PreparedStatement ps = con.prepareStatement(query);
 
 			ResultSet rs = ps.executeQuery();
-
+			System.out.println("----------------------------");
+			System.out.println(String.format("%-5s %-10s %-5s","ID","Name","Marks"));
+			System.out.println("----------------------------");
 			while (rs.next()) {
-				System.out.print(rs.getInt(1) + " ");
-				System.out.print(rs.getString(2) + " ");
-				System.out.print(rs.getDouble(3) + " ");
-				System.out.println();
+				
+				System.out.println(String.format("%-5d %-10s %-5s",rs.getInt(1),rs.getString(2),rs.getDouble(3)));
+				
 			}
+			System.out.println("----------------------------");
 
 		} catch (Exception e) {
 			System.out.println("While reding data --->" + e);
