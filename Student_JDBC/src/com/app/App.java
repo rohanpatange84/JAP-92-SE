@@ -13,14 +13,19 @@ public class App {
 		StudentDAO dao = new StudentDAO();
 		boolean light = true;
 		int n;
+
 		do {
 
-			
 			System.out.println("Enter 1  Adding Data");
 			System.out.println("Enter 2  Deleting Data");
 			System.out.println("Enter 3  updating Data");
 			System.out.println("Enter 4  Reading Data");
-			System.out.println("Enter 5  Exit!");
+			System.out.println("Enter 5  Find student by id");
+			System.out.println("Enter 6  Find all Name");
+			System.out.println("Enter 7  Find all Id and Name");
+			System.out.println("Enter 8  Find all Id and Mark");
+
+			System.out.println("Enter 9  Exit!");
 
 			n = sc.nextInt();
 
@@ -34,22 +39,17 @@ public class App {
 				String name = sc.nextLine();
 				System.out.println("Enter Mark:");
 				double mark = sc.nextDouble();
-
 				s1 = new Student(id, name, mark);
-				
 				dao.addStudent(s1);
-				
 				break;
-			case 2:
 				
+			case 2:
 				System.out.println("Enter id:");
 				int id2 = sc.nextInt();
-
 				dao.deleteStudent(id2);
 				break;
 
 			case 3:
-				
 				System.out.println("Enter id:");
 				int id3 = sc.nextInt();
 				sc.nextLine();
@@ -57,25 +57,41 @@ public class App {
 				String name3 = sc.nextLine();
 				System.out.println("Enter Mark:");
 				double mark3 = sc.nextDouble();
-
-				dao.updateStudent(id3,name3,mark3);
+				dao.updateStudent(id3, name3, mark3);
 				break;
 
 			case 4:
-
 				dao.readStudent();
 				break;
 
 			case 5:
+				System.out.println("Enter id:");
+				int id5 = sc.nextInt();
+				Student s2 = dao.findStudentById(id5);
+				System.out.println(s2);
+				break;
 
+			case 6:
+				dao.findAllNames();
+				break;
+
+			case 7:
+				dao.findIdAndName();
+				break;
+
+			case 8:
+				dao.findIdAndMark();
+				break;
+
+			case 9:
 				light = false;
-
 				break;
 
 			default:
 				System.out.println("Invalid input");
-
+				
 			}
+			
 		} while (light);
 
 	}

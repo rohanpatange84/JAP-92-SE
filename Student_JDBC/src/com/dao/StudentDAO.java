@@ -86,7 +86,7 @@ public class StudentDAO {
 			System.out.println("While updating data --->" + e);
 		}
 	}
-	
+
 	public static void readStudent() {
 
 		try {
@@ -97,18 +97,123 @@ public class StudentDAO {
 			PreparedStatement ps = con.prepareStatement(query);
 
 			ResultSet rs = ps.executeQuery();
-			System.out.println("----------------------------");
-			System.out.println(String.format("%-5s %-10s %-5s","ID","Name","Marks"));
-			System.out.println("----------------------------");
+			System.out.println("-----------------------");
+			System.out.println(String.format("%-5s %-10s %-5s", "ID", "Name", "Marks"));
+			System.out.println("-----------------------");
 			while (rs.next()) {
-				
-				System.out.println(String.format("%-5d %-10s %-5s",rs.getInt(1),rs.getString(2),rs.getDouble(3)));
-				
+
+				System.out.println(String.format("%-5d %-10s %-5s", rs.getInt(1), rs.getString(2), rs.getDouble(3)));
+
 			}
-			System.out.println("----------------------------");
+			System.out.println("-----------------------");
 
 		} catch (Exception e) {
 			System.out.println("While reding data --->" + e);
+		}
+	}
+
+	public static Student findStudentById(int id) {
+		Student s1 = null;
+
+		try {
+			Connection con = getCon();
+
+			String query = "select id,name,marks from student where id=?;";
+
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setInt(1, id);
+
+			ResultSet rs = ps.executeQuery();
+
+			if (rs.next()) {
+				s1 = new Student(rs.getInt(1), rs.getString(2), rs.getInt(3));
+
+			}
+
+		} catch (Exception e) {
+			System.out.println("While finding student by id--->" + e);
+		}
+
+		if (s1 == null) {
+			System.out.println("Student not found with id " + id);
+		}
+
+		return s1;
+
+	}
+
+	public static void findAllNames() {
+
+		try {
+			Connection con = getCon();
+
+			String query = "select name from student;";
+
+			PreparedStatement ps = con.prepareStatement(query);
+
+			ResultSet rs = ps.executeQuery();
+			System.out.println("---------");
+			System.out.println(String.format("%-10s", "Names"));
+			System.out.println("---------");
+			while (rs.next()) {
+
+				System.out.println(rs.getString(1));
+
+			}
+			System.out.println("---------");
+
+		} catch (Exception e) {
+			System.out.println("While reding data --->" + e);
+		}
+	}
+
+	public static void findIdAndName() {
+
+		try {
+			Connection con = getCon();
+
+			String query = "select id,name from student;";
+
+			PreparedStatement ps = con.prepareStatement(query);
+
+			ResultSet rs = ps.executeQuery();
+			System.out.println("---------------");
+			System.out.println(String.format("%-5s %-10s", "Id", "Names"));
+			System.out.println("---------------");
+			while (rs.next()) {
+
+				System.out.println(String.format("%-5s %-10s", +rs.getInt(1), rs.getString(2)));
+
+			}
+			System.out.println("---------------");
+
+		} catch (Exception e) {
+			System.out.println("While finding id and names --->" + e);
+		}
+	}
+
+	public static void findIdAndMark() {
+
+		try {
+			Connection con = getCon();
+
+			String query = "select id,marks from student;";
+
+			PreparedStatement ps = con.prepareStatement(query);
+
+			ResultSet rs = ps.executeQuery();
+			System.out.println("----------------");
+			System.out.println(String.format("%-5s %-10s", "Id", "Mark"));
+			System.out.println("----------------");
+			while (rs.next()) {
+
+				System.out.println(String.format("%-5d %-10f", +rs.getInt(1), rs.getDouble(2)));
+
+			}
+			System.out.println("----------------");
+
+		} catch (Exception e) {
+			System.out.println("While finding id and marks --->" + e);
 		}
 	}
 
