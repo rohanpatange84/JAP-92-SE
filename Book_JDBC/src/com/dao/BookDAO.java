@@ -1,0 +1,83 @@
+package com.dao;
+
+import com.model.Book;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+
+public class BookDAO {
+	public static void insertBook(Book b1) {
+
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/jap92", "root", "7666");
+
+			String quary = "insert into book(isbnid,name,price) values(?,?,?)";
+
+			PreparedStatement ps = con.prepareStatement(quary);
+			ps.setInt(1, b1.getId());
+			ps.setString(2, b1.getName());
+			ps.setDouble(3, b1.getPrice());
+
+			int rowCount = ps.executeUpdate();
+
+			if (rowCount > 0) {
+				System.out.println("Data Add SUCESS...");
+			}
+
+		} catch (Exception e) {
+			System.out.println("While Adding data---> " + e);
+		}
+
+	}
+
+	public static void deletBook(int id) {
+
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/jap92", "root", "7666");
+			String quary = "delete from book where isbnid=?";
+
+			PreparedStatement ps = con.prepareStatement(quary);
+			ps.setInt(1, id);
+
+			int rowCount = ps.executeUpdate();
+
+			if (rowCount > 0) {
+				System.out.println("Data Delet SUCESS...");
+			}
+
+		} catch (Exception e) {
+			System.out.println("While Deletion data---> " + e);
+		}
+	}
+	
+	
+	public static void updateBook(int id, String name, double price) {
+		try {
+			
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/jap92","root","7666");
+			
+			String quary = "update book set name=? , price=? where isbnid=?";
+			
+			PreparedStatement ps = con.prepareStatement(quary);
+			ps.setString(1, name);
+			ps.setDouble(2,price);
+			ps.setInt(3, id);
+			
+			
+			int rowCount = ps.executeUpdate();
+			
+			if(rowCount>0) {
+				System.out.println(" Data Update Sucess");
+			}
+			
+		}catch(Exception e) {
+			
+			System.out.println("While Updating Data---> "+e);
+		}
+	}
+
+}
