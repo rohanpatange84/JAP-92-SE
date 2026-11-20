@@ -1,11 +1,11 @@
 package com.model;
 
 public class Book {
-	
+
 	private int id;
 	private String name;
 	private double price;
-	
+
 	public Book() {
 		// TODO Auto-generated constructor stub
 	}
@@ -44,9 +44,7 @@ public class Book {
 	@Override
 	public String toString() {
 		// return "Book [id=" + id + ", name=" + name + ", price=" + price + "]";
-		return String.format("%-5d %-10s %-5f", id,name,price);
+		return String.format("%-5d %-10s %-5f", id, name, price);
 	}
-	
-	
 
 }

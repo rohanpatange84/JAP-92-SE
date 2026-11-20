@@ -13,13 +13,13 @@ public class App {
 		boolean light = true;
 
 		do {
-			
+
 			System.out.println("Enter 1 Adding data");
 			System.out.println("Enter 2 Deleting data");
 			System.out.println("Enter 3 Updating data");
 			System.out.println("Enter 4 Reading data");
 			System.out.println("Enter 5 Exit");
-			
+
 			int n = sc.nextInt();
 
 			switch (n) {
@@ -57,7 +57,7 @@ public class App {
 			case 4:
 				dao.readBooks();
 				break;
-			
+
 			default:
 				System.out.println("Invalid input...!");
 				break;
@@ -65,6 +65,7 @@ public class App {
 			}
 
 		} while (light);
+		
 
 	}
 }
