@@ -7,13 +7,26 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class BookDAO {
-	public static void insertBook(Book b1) {
+
+	public static Connection getCon() {
+		Connection con = null;
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/jap92", "root", "7666");
+		} catch (Exception e) {
+			System.out.println("While Conniction Building--->");
+		}
 
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/jap92", "root", "7666");
+		return con;
 
+	}
+
+	public static void insertBook(Book b1) {
+
+		try {
+			Connection con = getCon();
+			
 			String quary = "insert into book(isbnid,name,price) values(?,?,?)";
 
 			PreparedStatement ps = con.prepareStatement(quary);
@@ -37,8 +50,7 @@ public class BookDAO {
 	public static void deletBook(int id) {
 
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/jap92", "root", "7666");
+			Connection con = getCon();
 			String quary = "delete from book where isbnid=?";
 
 			PreparedStatement ps = con.prepareStatement(quary);
@@ -60,8 +72,7 @@ public class BookDAO {
 	public static void updateBook(int id, String name, double price) {
 		try {
 
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/jap92", "root", "7666");
+			Connection con = getCon();
 
 			String quary = "update book set name=? , price=? where isbnid=?";
 
@@ -88,9 +99,8 @@ public class BookDAO {
 
 		try {
 
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/jap92", "root", "7666");
-
+			Connection con = getCon();
+			
 			String quary = "select * from book";
 
 			PreparedStatement ps = con.prepareStatement(quary);
@@ -105,7 +115,7 @@ public class BookDAO {
 				System.out.println(String.format("%-5d %-15s %-5f", rs.getInt(1), rs.getString(2), rs.getDouble(3)));
 			}
 			System.out.println("---------------------------------");
-			
+
 			rs.close();
 			ps.close();
 			con.close();
