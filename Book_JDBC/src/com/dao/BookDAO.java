@@ -26,7 +26,8 @@ public class BookDAO {
 			if (rowCount > 0) {
 				System.out.println("Data Add SUCESS...");
 			}
-
+			ps.close();
+			con.close();
 		} catch (Exception e) {
 			System.out.println("While Adding data---> " + e);
 		}
@@ -48,6 +49,8 @@ public class BookDAO {
 			if (rowCount > 0) {
 				System.out.println("Data Delet SUCESS...");
 			}
+			ps.close();
+			con.close();
 
 		} catch (Exception e) {
 			System.out.println("While Deletion data---> " + e);
@@ -72,6 +75,8 @@ public class BookDAO {
 			if (rowCount > 0) {
 				System.out.println("Data Update Sucess");
 			}
+			ps.close();
+			con.close();
 
 		} catch (Exception e) {
 
@@ -85,25 +90,25 @@ public class BookDAO {
 
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/jap92", "root", "7666");
-			
+
 			String quary = "select * from book";
-			
+
 			PreparedStatement ps = con.prepareStatement(quary);
-			
+
 			ResultSet rs = ps.executeQuery();
 			System.out.println("---------------------------------");
 
-			System.out.println(String.format("%-5s %-15s %-5s","ID","NAME","PRICE"));
+			System.out.println(String.format("%-5s %-15s %-5s", "ID", "NAME", "PRICE"));
 			System.out.println("---------------------------------");
 
-			while(rs.next()) {
-				System.out.println(String.format("%-5d %-15s %-5f", rs.getInt(1),rs.getString(2),rs.getDouble(3)));
+			while (rs.next()) {
+				System.out.println(String.format("%-5d %-15s %-5f", rs.getInt(1), rs.getString(2), rs.getDouble(3)));
 			}
 			System.out.println("---------------------------------");
-
 			
-			
-			
+			rs.close();
+			ps.close();
+			con.close();
 
 		} catch (Exception e) {
 			System.out.println("While Reading DATA---> ");
