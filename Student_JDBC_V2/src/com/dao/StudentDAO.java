@@ -99,7 +99,7 @@ public class StudentDAO {
 		Student s1 = null;
 		String query = "select id,name,marks from student where id=?;";
 		try (Connection con = DBUtility.getDBConnection(); PreparedStatement ps = con.prepareStatement(query);) {
-			
+
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 
