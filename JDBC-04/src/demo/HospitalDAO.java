@@ -36,25 +36,22 @@ public class HospitalDAO {
 		}
 
 	}
-	
+
 	public static void deletData(int id) {
 		String quary = "DELETE FROM patients WHERE id =?";
-		try (Connection con = getCon();
-				PreparedStatement ps = con.prepareStatement(quary);
-				) {
-			
-			ps.setInt(1,id);
+		try (Connection con = getCon(); PreparedStatement ps = con.prepareStatement(quary);) {
+
+			ps.setInt(1, id);
 			ps.execute();
-			
 
 		} catch (Exception e) {
 			System.out.println("While Reading data--->" + e);
 		}
-		
+
 	}
 
 	public static void main(String[] args) {
-		
+
 		deletData(6);
 
 	}
