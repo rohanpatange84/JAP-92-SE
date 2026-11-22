@@ -200,7 +200,7 @@ public class StudentDAO {
 
 				int rowCount = ps.executeUpdate();
 
-				if (rowCount > 0)
+				//if (rowCount > 0)
 					//System.out.println("Data Added SUCESS...");
 			} catch (Exception e) {
 				System.out.println("While adding data --->" + e);
