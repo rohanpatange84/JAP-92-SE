@@ -6,6 +6,7 @@ import com.utility.DBUtility;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.List;
 
 public class BookDAO {
 	/*
@@ -107,7 +108,7 @@ public class BookDAO {
 		}
 
 	}
-	
+
 	public static Book findBookById(int id) {
 		Book b1 = null;
 		String query = "select isbnid,name,price from book where isbnid=?;";
@@ -195,6 +196,32 @@ public class BookDAO {
 		} catch (Exception e) {
 			System.out.println("While finding id and price --->" + e);
 		}
+	}
+
+	public static void insertAllBook(List<Book> list) {
+		String quary = "insert into book(isbnid,name,price) values(?,?,?)";
+		try (Connection con = DBUtility.getDBConnection(); PreparedStatement ps = con.prepareStatement(quary);) {
+
+			for (int i = 0; i < list.size(); i++) {
+				Book b1 = list.get(i);
+				ps.setInt(1, b1.getId());
+				ps.setString(2, b1.getName());
+				ps.setDouble(3, b1.getPrice());
+				ps.addBatch();
+
+			}
+
+			int[] rowCount = ps.executeBatch();
+
+			if (rowCount.length > 0) {
+				System.out.println("Data Add SUCESS...");
+			}
+			ps.close();
+			con.close();
+		} catch (Exception e) {
+			System.out.println("While Adding data---> " + e);
+		}
+
 	}
 
 }
