@@ -4,15 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import com.dao.StudentDAO;
+import com.dao.StudentDAOFactory;
 import com.model.Student;
 
 public class App {
-
+	static StudentDAO dao = StudentDAOFactory.getStudentDAO();
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		Student s1;
 
-		StudentDAO dao = new StudentDAO();
+		
 		boolean light = true;
 		int n;
 		
@@ -102,7 +103,7 @@ public class App {
 				break;
 				
 			case 9:
-				dao.addAllStudent4(list);
+				dao.addAllStudent(list);
 				break;
 
 			case 10:
