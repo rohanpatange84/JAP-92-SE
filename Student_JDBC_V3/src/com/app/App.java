@@ -43,10 +43,7 @@ public class App {
 			System.out.println("Enter 7  Find all Id and Name");
 			System.out.println("Enter 8  Find all Id and Mark");
 			System.out.println("Enter 9  Adding All Student");
-			
-			
-
-			System.out.println("Enter 9  Exit!");
+			System.out.println("Enter 10  Exit!");
 
 			n = sc.nextInt();
 
@@ -105,7 +102,7 @@ public class App {
 				break;
 				
 			case 9:
-				dao.addAllStudent3(list);
+				dao.addAllStudent4(list);
 				break;
 
 			case 10:

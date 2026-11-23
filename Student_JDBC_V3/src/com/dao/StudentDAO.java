@@ -184,15 +184,13 @@ public class StudentDAO {
 			System.out.println("While finding id and marks --->" + e);
 		}
 	}
-	
-	
+
 	public static void addAllStudent(List<Student> list) {
 		String query = "insert into student (id,name,marks) values(?,?,?)"; // ? place holder
-		
-		for(int i=0;i<list.size();i++) {
+
+		for (int i = 0; i < list.size(); i++) {
 			Student s1 = list.get(i);
 			try (Connection con = DBUtility.getDBConnection(); PreparedStatement ps = con.prepareStatement(query);) {
-
 
 				ps.setInt(1, s1.getId());
 				ps.setString(2, s1.getName());
@@ -200,47 +198,64 @@ public class StudentDAO {
 
 				int rowCount = ps.executeUpdate();
 
-				//if (rowCount > 0)
-					//System.out.println("Data Added SUCESS...");
+				// if (rowCount > 0)
+				// System.out.println("Data Added SUCESS...");
 			} catch (Exception e) {
 				System.out.println("While adding data --->" + e);
 			}
-			
-			
+
 		}
 	}
-	
+
 	public static void addAllStudent2(List<Student> list) {
-		
-		for(int i=0;i<list.size();i++) {
-			Student s1 =list.get(i);
+
+		for (int i = 0; i < list.size(); i++) {
+			Student s1 = list.get(i);
 			addStudent(s1);
 		}
-		
+
 	}
-	
-	
+
 	public static void addAllStudent3(List<Student> list) {
 		String query = "insert into student (id,name,marks) values(?,?,?)"; // ? place holder
 		try (Connection con = DBUtility.getDBConnection(); PreparedStatement ps = con.prepareStatement(query);) {
-			int rowCount=0;
-			for(int i=0;i<list.size();i++) {
+			int rowCount = 0;
+			for (int i = 0; i < list.size(); i++) {
 				Student s1 = list.get(i);
 				ps.setInt(1, s1.getId());
 				ps.setString(2, s1.getName());
 				ps.setDouble(3, s1.getMark());
 				rowCount = ps.executeUpdate();
-				
+
 			}
 
-			
-
 			if (rowCount > 0)
-				System.out.println("Data Added SUCESS..."+rowCount);
+				System.out.println("Data Added SUCESS... " + rowCount);
 		} catch (Exception e) {
 			System.out.println("While adding data --->" + e);
 		}
 	}
 
+	public static void addAllStudent4(List<Student> list) {
+		String query = "insert into student (id,name,marks) values(?,?,?)"; // ? place holder
+		try (Connection con = DBUtility.getDBConnection(); PreparedStatement ps = con.prepareStatement(query);) {
+
+			for (int i = 0; i < list.size(); i++) {
+				Student s1 = list.get(i);
+				ps.setInt(1, s1.getId());
+				ps.setString(2, s1.getName());
+				ps.setDouble(3, s1.getMark());
+				ps.addBatch();
+
+			}
+
+			int[] rowCount = ps.executeBatch();
+
+			if (rowCount.length > 0)
+				System.out.println("Data Added SUCESS..." + rowCount.length);
+		} catch (Exception e) {
+			System.out.println("While adding data --->" + e);
+		}
+	}
 
 }

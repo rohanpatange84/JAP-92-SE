@@ -12,6 +12,7 @@ public class DBUtility2{
 	private static String username;
 	private static String password;
 
+	
 	static {
 		try (FileInputStream fileInputStream = new FileInputStream("db.properties")) {
 

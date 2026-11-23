@@ -15,10 +15,10 @@ public class App {
 
 		do {
 
-			System.out.println("Enter 1 Adding data");
-			System.out.println("Enter 2 Deleting data");
-			System.out.println("Enter 3 Updating data");
-			System.out.println("Enter 4 Reading data");
+			System.out.println("Enter 1 Adding book");
+			System.out.println("Enter 2 Deleting book");
+			System.out.println("Enter 3 Updating book");
+			System.out.println("Enter 4 Reading books");
 			System.out.println("Enter 5 Find book by id");
 			System.out.println("Enter 6 Find all Name");
 			System.out.println("Enter 7 Find all Id and Name");
