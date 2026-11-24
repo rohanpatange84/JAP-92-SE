@@ -1,0 +1,60 @@
+package com.model;
+
+import java.io.Serializable;
+import java.time.LocalDate;
+
+public class Student implements Serializable {
+
+    private int id;
+    private String name;
+    private double marks;
+    private LocalDate admissionDate;
+
+    public Student() {
+        
+    }
+
+    public Student(String name, double marks, LocalDate admissionDate) {
+      
+        
+        this.name = name;
+        this.marks = marks;
+        this.admissionDate = admissionDate;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public double getMarks() {
+        return marks;
+    }
+
+    public void setMarks(float marks) {
+        this.marks = marks;
+    }
+
+    public LocalDate getAdmissionDate() {
+        return admissionDate;
+    }
+
+    public void setAdmissionDate(LocalDate admissionDate) {
+        this.admissionDate = admissionDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Student [id=" + id +
+                ", name=" + name +
+                ", marks=" + marks +
+                ", admissionDate=" + admissionDate + "]";
+    }
+}
