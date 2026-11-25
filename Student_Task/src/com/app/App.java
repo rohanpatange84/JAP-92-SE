@@ -22,6 +22,9 @@ public class App {
 			System.out.println("Enter 3  Updating Data");
 			System.out.println("Enter 4  Reading Data");
 			System.out.println("Enter 5  Get StudentById");
+			System.out.println("Enter 6  Updating Data WithID");
+			System.out.println("Enter 7  Get Maximum Marks");
+			System.out.println("Enter 8  Get Minimum Marks");
 
 			System.out.println("Enter 10  Exit!");
 
@@ -85,19 +88,58 @@ public class App {
 				System.out.println(s5);
 				break;
 
+			case 6:
+				System.out.println("Enter id:");
+				int id6 = sc.nextInt();
+				if (StudentDAO.isIdPresent(id6)) {
+
+					System.out.println("Enter newId:");
+					int newId = sc.nextInt();
+					sc.nextLine();
+					;
+					System.out.println("Enter Name:");
+					String name3 = sc.nextLine();
+					System.out.println("Enter Mark:");
+					double mark3 = sc.nextDouble();
+					System.out.println("Enter yaer");
+					int year3 = sc.nextInt();
+					System.out.println("Enter month");
+					int month3 = sc.nextInt();
+					System.out.println("Enter day");
+					int day3 = sc.nextInt();
+					LocalDate lo3 = LocalDate.of(year3, month3, day3);
+					dao.updateStudentWithId(id6, newId, name3, mark3, lo3);
+				} else {
+					System.out.println("Invalid id");
+				}
+				break;
+
+			case 7:
+				double marks=dao.findMaxMarks();
+				System.out.println("Maximum marks "+marks);
+				break;
+				
+			case 8:
+				double marks8=dao.findMinMarks();
+				System.out.println("Mimum marks "+marks8);
+				break;
+				
+			case 9:
+				double average=dao.findAverageMarks();
+				System.out.println("Average marks "+average);
+				break;
+				
+
 			case 10:
 				light = false;
 				break;
 
 			default:
 				System.out.println("Invalid input");
-				
+
 			}
 
 		} while (light);
 	}
-	
-	
-	
 
 }
