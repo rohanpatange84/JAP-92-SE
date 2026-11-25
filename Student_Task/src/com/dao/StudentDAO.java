@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
 import com.exception.StudentDAOException;
 import com.model.Student;
 import com.utility.DBUtility;
@@ -145,6 +144,29 @@ public class StudentDAO {
 		}
 		return student;
 		
+	}
+	
+	
+	public static void updateStudentWithId(int id,int newId, String name, double marks, LocalDate lo) {
+
+		String query = "UPDATE studentD SET id =?, name=? , marks=? ,admission_date=? WHERE id=?";
+		try (Connection con = DBUtility.getDBConnection(); PreparedStatement ps = con.prepareStatement(query);) {
+			ps.setInt(1,newId);
+			ps.setString(2, name);
+			ps.setDouble(3, marks);
+			ps.setObject(4, lo);
+			ps.setInt(5, id);
+
+			int rowCount = ps.executeUpdate();
+
+			if (rowCount > 0)
+				System.out.println("Data UPDATE SUCESS...");
+
+		} catch (Exception e) {
+			StudentDAOException ex = new StudentDAOException("Student UPDATE Failed To Update");
+			ex.initCause(e);
+			throw ex;
+		}
 	}
 
 }
