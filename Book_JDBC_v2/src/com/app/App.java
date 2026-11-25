@@ -2,7 +2,6 @@ package com.app;
 
 import java.util.Scanner;
 import com.model.Book;
-import com.model.Student;
 import com.dao.BookDAO;
 
 public class App {
