@@ -25,6 +25,10 @@ public class Student implements Serializable {
     public int getId() {
         return id;
     }
+    
+	public void setId(int id) {
+		this.id = id;
+	}
 
     public String getName() {
         return name;
@@ -38,7 +42,7 @@ public class Student implements Serializable {
         return marks;
     }
 
-    public void setMarks(float marks) {
+    public void setMarks(double marks) {
         this.marks = marks;
     }
 

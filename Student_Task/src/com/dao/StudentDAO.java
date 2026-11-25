@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import com.exception.StudentDAOException;
 import com.model.Student;
 import com.utility.DBUtility;
 
@@ -23,7 +24,9 @@ public class StudentDAO {
 			if (rowCount > 0)
 				System.out.println("Data Added SUCESS...");
 		} catch (Exception e) {
-			System.out.println("While adding data --->" + e);
+			StudentDAOException ex = new StudentDAOException("Student ADD Failed To Add");
+			ex.initCause(e);
+			throw ex;
 		}
 	}
 
@@ -39,7 +42,9 @@ public class StudentDAO {
 				System.out.println("Data DELETE SUCESS...");
 			}
 		} catch (Exception e) {
-			System.out.println("While delecting data --->" + e);
+			StudentDAOException ex = new StudentDAOException("Student DELETE Failed To Delete");
+			ex.initCause(e);
+			throw ex;
 		}
 	}
 
@@ -50,20 +55,22 @@ public class StudentDAO {
 				PreparedStatement ps = con.prepareStatement(query);
 				ResultSet rs = ps.executeQuery();) {
 
-			System.out.println("--------------------------------------");
-			System.out.println(String.format("%-5s %-10s %-10s  %-10s", "ID", "Name", "Marks", "Date"));
-			System.out.println("--------------------------------------");
+			System.out.println("-------------------------------------");
+			System.out.println(String.format("%-5s %-10s %-8s %-10s", "ID", "Name", "Marks", "Date"));
+			System.out.println("-------------------------------------");
 			while (rs.next()) {
 				LocalDate lo = rs.getDate("admission_date").toLocalDate();
 
 				System.out.println(
-						String.format("%-5d %-10s %-10s %-10s", rs.getInt(1), rs.getString(2), rs.getDouble(3), lo));
+						String.format("%-5d %-10s %-8s %-10s", rs.getInt(1), rs.getString(2), rs.getDouble(3), lo));
 
 			}
-			System.out.println("--------------------------------------");
+			System.out.println("-------------------------------------");
 
 		} catch (Exception e) {
-			System.out.println("While reding data --->" + e);
+			StudentDAOException ex = new StudentDAOException("Student READ Failed To Read");
+			ex.initCause(e);
+			throw ex;
 		}
 	}
 
@@ -83,7 +90,9 @@ public class StudentDAO {
 				System.out.println("Data UPDATE SUCESS...");
 
 		} catch (Exception e) {
-			System.out.println("While updating data --->" + e);
+			StudentDAOException ex = new StudentDAOException("Student UPDATE Failed To Update");
+			ex.initCause(e);
+			throw ex;
 		}
 	}
 
@@ -103,9 +112,39 @@ public class StudentDAO {
 			}
 
 		} catch (Exception e) {
-			System.out.println("While reding data --->" + e);
+			StudentDAOException ex = new StudentDAOException("Student CHECK Failed To Check");
+			ex.initCause(e);
+			throw ex;
 		}
 		return light;
+	}
+
+	public static Student getStudentById(int id) {
+		Student student = null;
+		String  quary = "SELECT * FROM studentD WHERE id = ?";
+		try(Connection con =DBUtility.getDBConnection(); PreparedStatement ps = con.prepareStatement(quary);){
+			
+			ps.setInt(1,id);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			if (rs.next()) {
+				student = new Student();
+				student.setId(rs.getInt("id"));
+				student.setName(rs.getString("name"));
+				student.setMarks(rs.getDouble("marks"));
+				student.setAdmissionDate(rs.getDate("admission_date").toLocalDate());
+			}
+			
+		}catch(Exception e){
+			
+			StudentDAOException ex = new StudentDAOException("Student GetById Failed To Get");
+			ex.initCause(e);
+			throw ex;
+			
+		}
+		return student;
+		
 	}
 
 }

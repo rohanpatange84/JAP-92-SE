@@ -7,6 +7,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
+@SuppressWarnings("unused")
 public class DBUtility{
 	private static String url;
 	private static String driverClass;
