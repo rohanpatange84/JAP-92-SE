@@ -147,18 +147,18 @@ public class App {
 				System.out.println("Maximum marks "+marks);
 				break;
 				
-			case 88:
+			case 9:
 				double marks8=dao.findMinMarks();
 				System.out.println("Mimum marks "+marks8);
 				break;
 				
-			case 9:
+			case 10:
 				double average=dao.findAverageMarks();
 				System.out.println("Average marks "+average);
 				break;
 				
 
-			case 10:
+			case 11:
 				light = false;
 				break;
 
