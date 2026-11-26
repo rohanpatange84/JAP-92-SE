@@ -58,8 +58,9 @@ public class App {
 				System.out.print("Enter Admission Date (yyyy-mm-dd): ");
 				LocalDate lo = LocalDate.parse(sc.next());
 
-				System.out.print("Enter Admission Time (HH:mm:ss): ");
-				LocalTime lt = LocalTime.parse(sc.next());
+//				System.out.print("Enter Admission Time (HH:mm:ss): ");
+//				LocalTime lt = LocalTime.parse(sc.next());
+				LocalTime lt=LocalTime.now();
 
 				s1 = new Student(name, mark, lo, lt);
 				dao.addStudent(s1);
@@ -99,8 +100,8 @@ public class App {
 					System.out.print("Enter Admission Date (yyyy-mm-dd): ");
 					LocalDate lo3 = LocalDate.parse(sc.next());
 
-					System.out.print("Enter Admission Time (HH:mm:ss): ");
-					LocalTime lt3 = LocalTime.parse(sc.next());
+					
+					LocalTime lt3 = LocalTime.now();
 
 					dao.updateStudent(id3, name3, mark3, lo3, lt3);
 				} else {
