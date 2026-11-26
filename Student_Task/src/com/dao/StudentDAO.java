@@ -146,7 +146,7 @@ public class StudentDAO {
 
 	}
 
-	public static void updateStudentWithId(int id, int newId, String name, double marks, LocalDate lo) {
+	public static void updateStudentWithId1(int id, int newId, String name, double marks, LocalDate lo) {
 
 		String query = "UPDATE studentD SET id =?, name=? , marks=? ,admission_date=? WHERE id=?";
 		try (Connection con = DBUtility.getDBConnection(); PreparedStatement ps = con.prepareStatement(query);) {
@@ -236,6 +236,29 @@ public class StudentDAO {
 
 		return average;
 
+	}
+	
+	
+	public static void updateStudentWithId(int id,int newId, String name, double marks, LocalDate lo) {
+
+		String query = "UPDATE studentD SET id =?, name=? , marks=? ,admission_date=? WHERE id=?";
+		try (Connection con = DBUtility.getDBConnection(); PreparedStatement ps = con.prepareStatement(query);) {
+			ps.setInt(1,newId);
+			ps.setString(2, name);
+			ps.setDouble(3, marks);
+			ps.setObject(4, lo);
+			ps.setInt(5, id);
+
+			int rowCount = ps.executeUpdate();
+
+			if (rowCount > 0)
+				System.out.println("Data UPDATE SUCESS...");
+
+		} catch (Exception e) {
+			StudentDAOException ex = new StudentDAOException("Student UPDATE Failed To Update");
+			ex.initCause(e);
+			throw ex;
+		}
 	}
 
 }
