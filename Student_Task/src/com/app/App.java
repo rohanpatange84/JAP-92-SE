@@ -131,7 +131,7 @@ public class App {
 					double mark3 = sc.nextDouble();
 					System.out.println("Enter yaer");
 					int year3 = sc.nextInt();
-					System.out.println("Enter month");
+					System.out.println("Enter month ");
 					int month3 = sc.nextInt();
 					System.out.println("Enter day");
 					int day3 = sc.nextInt();
