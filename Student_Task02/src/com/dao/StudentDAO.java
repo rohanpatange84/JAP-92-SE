@@ -124,124 +124,126 @@ public class StudentDAO {
 		return light;
 	}
 
-//	public static Student getStudentById(int id) {
-//		Student student = null;
-//		String quary = "SELECT * FROM studentD WHERE id = ?";
-//		try (Connection con = DBUtility.getDBConnection(); PreparedStatement ps = con.prepareStatement(quary);) {
-//
-//			ps.setInt(1, id);
-//
-//			ResultSet rs = ps.executeQuery();
-//
-//			if (rs.next()) {
-//				student = new Student();
-//				student.setId(rs.getInt("id"));
-//				student.setName(rs.getString("name"));
-//				student.setMarks(rs.getDouble("marks"));
-//				student.setAdmissionDate(rs.getDate("admission_date").toLocalDate());
-//			}
-//
-//		} catch (Exception e) {
-//
-//			StudentDAOException ex = new StudentDAOException("Student GetById Failed To Get");
-//			ex.initCause(e);
-//			throw ex;
-//
-//		}
-//		return student;
-//
-//	}
-//
-//	public static void updateStudentWithId(int id, int newId, String name, double marks, LocalDate lo) {
-//
-//		String query = "UPDATE studentD SET id =?, name=? , marks=? ,admission_date=? WHERE id=?";
-//		try (Connection con = DBUtility.getDBConnection(); PreparedStatement ps = con.prepareStatement(query);) {
-//			ps.setInt(1, newId);
-//			ps.setString(2, name);
-//			ps.setDouble(3, marks);
-//			ps.setObject(4, lo);
-//			ps.setInt(5, id);
-//
-//			int rowCount = ps.executeUpdate();
-//
-//			if (rowCount > 0)
-//				System.out.println("Data UPDATE SUCESS...");
-//
-//		} catch (Exception e) {
-//			StudentDAOException ex = new StudentDAOException("Student UPDATE Failed To Update");
-//			ex.initCause(e);
-//			throw ex;
-//		}
-//	}
-//
-//	public static double findMaxMarks() {
-//		double maxMarks = 0;
-//		String quary = "SELECT MAX(marks) FROM studentD";
-//		try (Connection con = DBUtility.getDBConnection(); PreparedStatement ps = con.prepareStatement(quary);) {
-//
-//			ResultSet rs = ps.executeQuery();
-//
-//			if (rs.next()) {
-//
-//				maxMarks = rs.getDouble(1);
-//
-//			}
-//
-//		} catch (Exception e) {
-//			StudentDAOException ex = new StudentDAOException("Student MaxMark Failed To Find");
-//			ex.initCause(e);
-//			throw ex;
-//		}
-//
-//		return maxMarks;
-//	}
-//
-//	public static double findMinMarks() {
-//
-//		double minMarks = 0;
-//		String quary = "SELECT MIN(marks) FROM studentD";
-//		try (Connection con = DBUtility.getDBConnection(); PreparedStatement ps = con.prepareStatement(quary);) {
-//
-//			ResultSet rs = ps.executeQuery();
-//
-//			if (rs.next()) {
-//
-//				minMarks = rs.getDouble(1);
-//
-//			}
-//
-//		} catch (Exception e) {
-//			StudentDAOException ex = new StudentDAOException("Student MaxMark Failed To Find");
-//			ex.initCause(e);
-//			throw ex;
-//		}
-//
-//		return minMarks;
-//
-//	}
-//
-//	public static double findAverageMarks() {
-//
-//		double average = 0;
-//		String quary = "SELECT AVG(marks) FROM student";
-//		try (Connection con = DBUtility.getDBConnection(); PreparedStatement ps = con.prepareStatement(quary);) {
-//
-//			ResultSet rs = ps.executeQuery();
-//
-//			if (rs.next()) {
-//
-//				average = rs.getDouble(1);
-//
-//			}
-//
-//		} catch (Exception e) {
-//			StudentDAOException ex = new StudentDAOException("Student MaxMark Failed To Find");
-//			ex.initCause(e);
-//			throw ex;
-//		}
-//
-//		return average;
-//
-//	}
+	public static Student getStudentById(int id) {
+		Student student = null;
+		String quary = "SELECT * FROM studentst WHERE id = ?";
+		try (Connection con = DBUtility.getDBConnection(); PreparedStatement ps = con.prepareStatement(quary);) {
+
+			ps.setInt(1, id);
+
+			ResultSet rs = ps.executeQuery();
+
+			if (rs.next()) {
+				student = new Student();
+				student.setId(rs.getInt("id"));
+				student.setName(rs.getString("name"));
+				student.setMarks(rs.getDouble("marks"));
+				student.setAdmissionDate(rs.getDate("admission_date").toLocalDate());
+				student.setAdmissionTime(rs.getTime("admission_time").toLocalTime());
+			}
+
+		} catch (Exception e) {
+
+			StudentDAOException ex = new StudentDAOException("Student GetById Failed To Get");
+			ex.initCause(e);
+			throw ex;
+
+		}
+		return student;
+
+	}
+
+	public static void updateStudentWithId(int id, int newId, String name, double marks, LocalDate lo,LocalTime lt) {
+
+		String query = "UPDATE studentst SET id =?, name=? , marks=? ,admission_date=?,admission_time=? WHERE id=?";
+		try (Connection con = DBUtility.getDBConnection(); PreparedStatement ps = con.prepareStatement(query);) {
+			ps.setInt(1, newId);
+			ps.setString(2, name);
+			ps.setDouble(3, marks);
+			ps.setObject(4, lo);
+			ps.setObject(5, lt);
+			ps.setInt(6, id);
+
+			int rowCount = ps.executeUpdate();
+
+			if (rowCount > 0)
+				System.out.println("Data UPDATE SUCESS...");
+
+		} catch (Exception e) {
+			StudentDAOException ex = new StudentDAOException("Student UPDATE Failed To Update");
+			ex.initCause(e);
+			throw ex;
+		}
+	}
+
+	public static double findMaxMarks() {
+		double maxMarks = 0;
+		String quary = "SELECT MAX(marks) FROM studentst";
+		try (Connection con = DBUtility.getDBConnection(); PreparedStatement ps = con.prepareStatement(quary);) {
+
+			ResultSet rs = ps.executeQuery();
+
+			if (rs.next()) {
+
+				maxMarks = rs.getDouble(1);
+
+			}
+
+		} catch (Exception e) {
+			StudentDAOException ex = new StudentDAOException("Student MaxMark Failed To Find");
+			ex.initCause(e);
+			throw ex;
+		}
+
+		return maxMarks;
+	}
+
+	public static double findMinMarks() {
+
+		double minMarks = 0;
+		String quary = "SELECT MIN(marks) FROM studentst";
+		try (Connection con = DBUtility.getDBConnection(); PreparedStatement ps = con.prepareStatement(quary);) {
+
+			ResultSet rs = ps.executeQuery();
+
+			if (rs.next()) {
+
+				minMarks = rs.getDouble(1);
+
+			}
+
+		} catch (Exception e) {
+			StudentDAOException ex = new StudentDAOException("Student MaxMark Failed To Find");
+			ex.initCause(e);
+			throw ex;
+		}
+
+		return minMarks;
+
+	}
+
+	public static double findAverageMarks() {
+
+		double average = 0;
+		String quary = "SELECT AVG(marks) FROM studentst";
+		try (Connection con = DBUtility.getDBConnection(); PreparedStatement ps = con.prepareStatement(quary);) {
+
+			ResultSet rs = ps.executeQuery();
+
+			if (rs.next()) {
+
+				average = rs.getDouble(1);
+
+			}
+
+		} catch (Exception e) {
+			StudentDAOException ex = new StudentDAOException("Student MaxMark Failed To Find");
+			ex.initCause(e);
+			throw ex;
+		}
+
+		return average;
+
+	}
 
 }

@@ -27,7 +27,6 @@ public class App {
 			System.out.println("Enter 7  Get Maximum Marks");
 			System.out.println("Enter 8  Get Minimum Marks");
 
-
 			System.out.println("Enter 10  Exit!");
 
 			n = sc.nextInt();
@@ -89,16 +88,16 @@ public class App {
 				Student s5 = dao.getStudentById(id5);
 				System.out.println(s5);
 				break;
-				
+
 			case 6:
 				System.out.println("Enter id:");
 				int id6 = sc.nextInt();
 				if (StudentDAO.isIdPresent(id6)) {
-					
+
 					System.out.println("Enter newId:");
-					int newId=sc.nextInt();
+					int newId = sc.nextInt();
 					sc.nextLine();
-;					System.out.println("Enter Name:");
+					System.out.println("Enter Name:");
 					String name3 = sc.nextLine();
 					System.out.println("Enter Mark:");
 					double mark3 = sc.nextDouble();
@@ -109,12 +108,11 @@ public class App {
 					System.out.println("Enter day");
 					int day3 = sc.nextInt();
 					LocalDate lo3 = LocalDate.of(year3, month3, day3);
-					dao.updateStudentWithId(id6,newId, name3, mark3, lo3);
+					dao.updateStudentWithId(id6, newId, name3, mark3, lo3);
 				} else {
 					System.out.println("Invalid id");
 				}
 				break;
-
 
 			case 7:
 				System.out.println("Enter id:");
@@ -143,20 +141,19 @@ public class App {
 				break;
 
 			case 8:
-				double marks=dao.findMaxMarks();
-				System.out.println("Maximum marks "+marks);
+				double marks = dao.findMaxMarks();
+				System.out.println("Maximum marks " + marks);
 				break;
-				
+
 			case 9:
-				double marks8=dao.findMinMarks();
-				System.out.println("Mimum marks "+marks8);
+				double marks8 = dao.findMinMarks();
+				System.out.println("Mimum marks " + marks8);
 				break;
-				
+
 			case 10:
-				double average=dao.findAverageMarks();
-				System.out.println("Average marks "+average);
+				double average = dao.findAverageMarks();
+				System.out.println("Average marks " + average);
 				break;
-				
 
 			case 11:
 				light = false;
