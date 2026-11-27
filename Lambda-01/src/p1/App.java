@@ -35,29 +35,21 @@ public class App {
 		};
 
 		s2.sayHello();
-		
-		// ()  -->  {     }
-		
-		Sayable ss=() -> {
-			  System.out.println("BYE  BYE  BYE !!!");
+
+		// () --> { }
+
+		Sayable ss = () -> {
+			System.out.println("BYE  BYE  BYE !!!");
 		};
 
-		
 		ss.sayHello();
+
+		Sayable st = () -> {
+			System.out.println("Cool");
+		};
 		
-		
-		Sayable st=()-> {System.out.println("Cool");};
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		st.sayHello();
+
 	}
 
 }

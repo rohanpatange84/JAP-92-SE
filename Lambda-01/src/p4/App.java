@@ -10,7 +10,7 @@ class Hello implements Sayable {
 
 	@Override
 	public void SayHello(String name) {
-		System.out.println("Hello Hello");
+		System.out.println("Hello Hello "+name);
 
 	}
 }

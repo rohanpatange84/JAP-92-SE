@@ -3,15 +3,15 @@ package p3;
 @FunctionalInterface
 interface Sayable {
 
-	int SayHello();
+	int sayHello();
 }
 
 class Hello implements Sayable {
 
 	@Override
-	public int SayHello() {
+	public int sayHello() {
 		System.out.println("Hello Hello");
-		return 45;
+		return 10;
 	}
 }
 
@@ -19,20 +19,31 @@ public class App {
 
 	public static void main(String[] args) {
 
-		Hello hello = new Hello();
+		Sayable s1 = new Hello();
 
-		System.out.println(hello.SayHello());
+		System.out.println(s1.sayHello());
 
-		Sayable sb = new Hello();
+		Sayable s2 = new Sayable() {
+			@Override
+			public int sayHello() {
+				return 20;
+			}
+		};
+		System.out.println("------------------");
 
-		System.out.println(sb.SayHello());
+		System.out.println(s2.sayHello());
+		System.out.println("------------------");
 
-		Sayable s2 = () -> {
-			return 78;
+		Sayable s3 = () -> {
+			return 30;
 		};
 
+		System.out.println(s3.sayHello());
+
+		Sayable s4 = () -> 40;
 		System.out.println("---------------");
-		System.out.println(s2.SayHello());
+
+		System.out.println(s4.sayHello());
 	}
 
 }
