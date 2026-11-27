@@ -71,8 +71,6 @@ public class BankDAO {
 				System.out.println(String.format("%-5d %-15s %-15d %-12.2f %-12s %-10s", rs.getInt(1),
 						rs.getString(2), rs.getLong(3), rs.getDouble(4), date, time));
 				
-//				 System.out.println(String.format("%-5d %-15s %-15d %-12.2f %-12s %-10s", 
-//		                    id, name, accountNo, balance, date, time));
 
 			}
 			System.out.println("------------------------------------------------------------------------------");
@@ -81,6 +79,12 @@ public class BankDAO {
 			ex.initCause(e);
 			throw ex;
 		}
+	}
+	
+	public static void depositeMoney(double ammount) {
+		
+		
+		
 	}
 //
 ////
