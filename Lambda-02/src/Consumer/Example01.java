@@ -137,20 +137,22 @@ public class Example01 {
 
 		System.out.println("---------------------------");
 		
-//		Triangle t1 = new Triangle(40,80,50);
-//
-//		Consumer<Triangle> c6 = (Triangle t1) -> {
-//
-//			int add = t1.getX()+t1.getY();t1.getZ();
-//			
-//			if(add>=180)
-//				System.out.println("Valid Triangle");
-//			else
-//				System.out.println("Invalid Triangle");
-//			
-//
-//		};
-//
-//		c6.accept(50);
+		Triangle t1 = new Triangle(90,80,50);
+
+		Consumer<Triangle> c6 = ( t) -> {
+
+			int add = t1.getX()+t1.getY()+t1.getZ();
+			
+			if(add>=180)
+				System.out.println("Valid Triangle");
+			else
+				System.out.println("Invalid Triangle");
+			
+
+		};
+
+		c6.accept(t1);
+		
+		
 	}
 }
