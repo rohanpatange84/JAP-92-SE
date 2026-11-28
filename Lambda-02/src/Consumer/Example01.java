@@ -1,14 +1,12 @@
 package Consumer;
 
-
-
 import java.util.function.Consumer;
 
-class Triangle{
+class Triangle {
 	int x;
 	int y;
 	int z;
-	
+
 	public Triangle() {
 		// TODO Auto-generated constructor stub
 	}
@@ -43,33 +41,27 @@ class Triangle{
 	public void setZ(int z) {
 		this.z = z;
 	}
-	
-	
-	
-	
-	
-	
-	
+
 }
 
 /*
- Print whether a number is even or odd.
-
-
-Print multiplication table of a given number.
-
-
-Print ASCII value of each character in a string.
-
-
-Print sum of digits of a number.
-
-
-Print factorial of a number.
-
-
-Print whether a triangle is valid (angles sum = 180).
-
+ * Print whether a number is even or odd.
+ * 
+ * 
+ * Print multiplication table of a given number.
+ * 
+ * 
+ * Print ASCII value of each character in a string.
+ * 
+ * 
+ * Print sum of digits of a number.
+ * 
+ * 
+ * Print factorial of a number.
+ * 
+ * 
+ * Print whether a triangle is valid (angles sum = 180).
+ * 
  */
 
 public class Example01 {
@@ -107,12 +99,12 @@ public class Example01 {
 
 		System.out.println("--------------------");
 
-		Consumer<Integer> c4 = (n4) -> {
+		Consumer<Integer> c4 = (num) -> {
 
 			int sum = 0;
-			while (n4 > 0) {
-				sum = n4 + n4 % 10;
-				n4 = n4 / 10;
+			while (num > 0) {
+				sum += num % 10;
+				num = num / 10;
 			}
 
 			System.out.println("Sum of number of is " + sum);
@@ -136,23 +128,21 @@ public class Example01 {
 		c5.accept(5);
 
 		System.out.println("---------------------------");
-		
-		Triangle t1 = new Triangle(90,80,50);
 
-		Consumer<Triangle> c6 = ( t) -> {
+		Triangle t1 = new Triangle(90, 80, 50);
 
-			int add = t1.getX()+t1.getY()+t1.getZ();
-			
-			if(add>=180)
+		Consumer<Triangle> c6 = (t) -> {
+
+			int add = t1.getX() + t1.getY() + t1.getZ();
+
+			if (add >= 180)
 				System.out.println("Valid Triangle");
 			else
 				System.out.println("Invalid Triangle");
-			
 
 		};
 
 		c6.accept(t1);
-		
-		
+
 	}
 }
